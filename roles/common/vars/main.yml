@@ -1,0 +1,86 @@
+---
+  _disable_java_update:
+      - path: HKLM:\SOFTWARE\JavaSoft\Java Update\Policy
+        name: EnableJavaUpdate
+        data: 0
+
+  _uac_disable:
+      - path: HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System
+        name: EnableLUA
+        data: 0
+  _uac_popup_ctrl:
+      - path: HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System
+        name: ConsentPromptBehaviorAdmin
+        data: 0
+      - path: HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System
+        name: ConsentPromptBehaviorAdmin
+        data: 5
+
+  _remote_desktop:
+      - path: HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server
+        name: fDenyTSConnections
+        data: 0
+      - path: HKLM:\SYSTEM\CurrentControlSet\Control\Remote Assistance
+        name: fAllowToGetHelp
+        data: 0
+      - path: HKLM:\System\CurrentControlSet\Control\Terminal Server
+        name: fSingleSessionPerUser
+        data: 0
+      - path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+        name: fDisableCdm
+        data: 0
+  _firewall_rules:
+      - name: リモート デスクトップ - シャドウ (TCP 受信)
+        localport: any
+        remoteport: any
+        action: allow
+        direction: in
+        protocol: tcp
+        profiles: domain,private,public
+      - name: リモート デスクトップ - ユーザー モード (TCP 受信)
+        localport: 3389
+        remoteport: any
+        action: allow
+        direction: in
+        protocol: tcp
+        profiles: domain,private,public
+      - name: リモート デスクトップ - ユーザー モード (UDP 受信)
+        localport: 3389
+        remoteport: any
+        action: allow
+        direction: in
+        protocol: udp
+        profiles: domain,private,public
+
+  _local_path: clamwin-0.99.4-setup.exe
+  _remote_path: c:\tmp\clamwin-0.99.4-setup.exe
+
+  _local_installer_path: jre-8u261-windows-x64.exe
+  _remote_installer_path: c:\tmp\jre-8u261-windows-x64.exe
+  _local_config_path: silent_jre_install.cfg
+  _remote_config_path: c:\tmp\silent_jre_install.cfg
+  _remote_log_path: c:\tmp\jre-8u261-windows-x64.install.log
+  _local_logfile_path: /tmp/ansible_logs/
+  _registory_key: Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment
+
+  _admin_key: HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}
+  _user_key: HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}
+  _current_user_key1: HKCU:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7‐37EF‐4b3f‐8CFC‐4F3A74704073}
+  _current_user_key2: HKCU:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8‐37EF‐4b3f‐8CFC‐4F3A74704073}
+  _first_home_page: HKCU:\Software\Microsoft\Internet Explorer\Main
+  _first_home_page_value: First Home Page
+  _first_home_page_data: res://iesetup.dll/HardAdmin.htm
+  _installed_val: "1"
+
+  _clsids:
+    - [
+        "{20D04FE0-3AEA-1069-A2D8-08002B30309D}", # PC ICON
+        "{645FF040-5081-101B-9F08-00AA002F954E}", # Garbage Box ICON
+        "{59031a47-3f72-44a7-89c5-5595fe6b30ee}", # User Folder ICON
+        "{5399E694-6CE5-4D6C-8FCE-1D8870FDCBA0}", # Control Panel ICON
+        "{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}" # Network ICON
+        # "{031E4825-7B94-4dc3-B131-E946B44C8DD5}", # liblary
+        # "{018D5C66-4533-4307-9B53-224DE2ED1FE6}", # One Drive
+      ]
+
+...

@@ -1,0 +1,16 @@
+---
+  - name: domain を設定する
+    win_domain_membership:
+      dns_domain_name: "{{ hv_dns_domain_name }}"
+      hostname: "{{ hv_host_name }}"
+      domain_admin_user: "{{ hv_domain_admin_user }}"
+      domain_admin_password: "{{ hv_domain_admin_password }}"
+      domain_ou_path: "{{ hv_domain_ou_path }}"
+      state: domain
+    register: _result_domain_membership
+
+  - name: do reboot
+    win_reboot:
+      reboot_timeout: 3600
+    when: _result_domain_membership.reboot_required
+...

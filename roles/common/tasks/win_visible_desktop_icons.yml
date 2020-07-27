@@ -1,0 +1,11 @@
+---
+  - name: デスクトップアイコンの表示（PC、ごみ箱、ユーザーフォルダ、コントロールパネル、ネットワーク）
+    win_regedit:
+        path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel
+        name: "{{ item }}"
+        data: "0" # 0:表示、1：非表示
+        type: dword
+        state: present
+    with_flattened:
+      - "{{ _clsids }}"
+...

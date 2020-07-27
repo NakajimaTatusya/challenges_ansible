@@ -1,0 +1,10 @@
+---
+  - name: ファイアウォールの有効化
+    win_firewall:
+      state: enabled
+      profiles:
+          - Domain
+          - Private
+          - Public
+    tags: enable_firewall
+...

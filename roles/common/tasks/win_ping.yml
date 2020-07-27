@@ -1,0 +1,9 @@
+---
+  - name: 疎通確認と facts の収集
+    win_ping:
+      data: "pong"
+
+  - name: get windows server informations
+    debug: 
+      var: ansible_facts
+...

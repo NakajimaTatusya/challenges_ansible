@@ -1,0 +1,9 @@
+---
+  # windows update role playbook
+  - hosts: winsvr_staging
+#  - hosts: winsvr_production
+    gather_facts: false
+
+    roles:
+      - role: win_update
+...

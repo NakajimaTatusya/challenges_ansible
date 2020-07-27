@@ -1,0 +1,6 @@
+---
+  - name: Winhttp proxy を設定する
+    win_http_proxy:
+      proxy: "{{ gv_proxy }}"
+      bypass: "{{ gv_list_bypass }}"
+...

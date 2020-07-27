@@ -1,0 +1,10 @@
+---
+  # フィードバックと診断通知を無効にする
+  - name: フィードバックと診断通知を無効にする
+    win_regedit:
+      path: HKLM:\Software\Policies\Microsoft\Windows\DataCollection
+      name: DoNotShowFeedbackNotifications
+      data: "0" # 0：無効、1：有効
+      type: dword
+      state: present
+...

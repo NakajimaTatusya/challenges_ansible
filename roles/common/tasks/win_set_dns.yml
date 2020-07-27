@@ -1,0 +1,11 @@
+---
+  - name: "DNSをクリアする"
+    win_dns_client:
+      adapter_names: "イーサネット"
+      ipv4_addresses: []
+
+  - name: "DNSを設定する"
+    win_dns_client:
+      adapter_names: "イーサネット"
+      ipv4_addresses: "{{ vh_dns_ipv4 }}"
+...

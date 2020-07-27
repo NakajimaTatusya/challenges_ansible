@@ -1,0 +1,11 @@
+---
+  # Winhttp proxy 設定のクリア
+  - name: Winhttp proxy 設定のクリア
+    win_http_proxy:
+      proxy: ""
+      bypass: ""
+
+      #- name: Set windows HTTP service from internet explorer
+      #  win_http_proxy:
+      #    source: ie
+...

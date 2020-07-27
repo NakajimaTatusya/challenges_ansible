@@ -1,0 +1,10 @@
+---
+  - name: Java Update の無効化
+    win_regedit:
+      path: "{{ item.path }}"
+      name: "{{ item.name }}"
+      data: "{{ item.data }}"
+      type: dword
+      state: present
+    with_items: "{{ _disable_java_update }}"
+...

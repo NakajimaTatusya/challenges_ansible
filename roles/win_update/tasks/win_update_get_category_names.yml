@@ -1,0 +1,16 @@
+---
+    - name: get Windows Update category by Ansible
+      hosts: winsvr
+      gather_facts: false
+
+      tasks:
+        - name: get category names.
+          win_updates:
+            state: searched
+          register: _result_updates
+
+        - name: Debug display update results
+          debug:
+            var: _result_updates
+            verbosity: 0
+...

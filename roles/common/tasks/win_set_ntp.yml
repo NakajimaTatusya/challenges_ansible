@@ -1,0 +1,20 @@
+---
+  # NTP の設定を行った後に、win32tm の標準出力をLinuxサーバー側で表示すると文字化けする
+  # そのために、win_shell,win_command モジュールのソースコードを変更した
+  - name: NTP の設定を行う(w32time)
+    win_service:
+      name: w32time
+      state: started
+      start_mode: auto
+
+  - name: Configure NTP
+    win_command: w32tm /config /manualpeerlist:"{{ gv_peers }}" /reliable:yes /update
+    args:
+      output_encoding_override: shift_jis
+    changed_when: false
+
+  - name: confirm
+    win_command: w32tm /query /status
+    args:
+      output_encoding_override: shift_jis
+...
