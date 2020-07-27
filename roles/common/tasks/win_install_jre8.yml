@@ -44,4 +44,14 @@
       dest: "{{ _local_logfile_path }}"
       flat: yes
     when: _result_jre.stdout_lines[0] == "1"
+
+  - name: 使い終わったインストーラーを削除
+    win_file:
+      path: "{{ _remote_installer_path }}"
+      state: absent
+
+  - name: 使い終わったcfgファイルを削除
+    win_file:
+      path: "{{ _remote_config_path }}"
+      state: absent
 ...
