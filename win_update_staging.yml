@@ -4,6 +4,12 @@
 #  - hosts: winsvr_production
     gather_facts: true
 
+    pre_tasks:
+      - name: c:\tmp ディレクト作成
+        win_file:
+          path: c:\tmp\
+          state: directory
+
     roles:
       - role: win_update
 ...
