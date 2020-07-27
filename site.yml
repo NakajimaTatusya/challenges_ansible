@@ -2,7 +2,7 @@
   # master playbook
   - hosts: winsvr_staging
 #  - hosts: winsvr_production
-    gather_facts: false
+    gather_facts: true
 
     roles:
       - role: common
