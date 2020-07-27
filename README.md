@@ -7,18 +7,21 @@
 
 ## ディレクトリ構成
 
-* challenges_ansible\
-  * group_vars\
-  * host_vars\
-  * production\
+* challenges_ansible/
+  * group_vars/
+  * host_vars/
+  * production/
     * hosts
-  * roles\
-    * common\
-      * files\
-      * tasks\
-      * vars\
-  * staging\
+  * roles/
+    * common/
+      * files/
+      * tasks/
+      * vars/
+    * win_update/
+      * tasks/
+      * vars/
+  * staging/
     * hosts
   * ansible.cfg
   * site.yml  (master playbook)
-  
+  * win_update_stagin.yml
