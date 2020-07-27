@@ -12,5 +12,5 @@
   - name: reboot
     win_reboot:
       reboot_timeout: 3600
-    when: _resutl_uninstall.rc == 0
+    when: _resutl_uninstall.changed == true
 ...
