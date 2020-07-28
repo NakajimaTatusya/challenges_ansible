@@ -1,0 +1,17 @@
+---
+  - name: 上位のPlayBookでCSVを読み込んで ROLE で参照できるか？
+    debug:
+      var: _result_server_parameter.dict
+
+  - name: 上位のPlayBookでCSVを読み込んで ROLE で参照できるか？
+    debug:
+      msg: "{{ _result_server_parameter.dict[inventory_hostname].workgroupname }}"
+
+  - name: 上位のPlayBookでCSVを読み込んで ROLE で参照できるか？
+    debug:
+      msg: "{{ item.memo }}"
+    with_items:
+      - "{{ _result_server_parameter.dict[inventory_hostname] }}"
+
+  - include_tasks: subtasks.yml
+...
