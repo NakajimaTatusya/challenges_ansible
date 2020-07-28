@@ -1,0 +1,19 @@
+---
+  - name: CSV ファイルからパラメータを取得するテスト
+    hosts: win_test
+    gather_facts: false
+
+    # 仮説：ここで定義された変数は読み込まれたロールでも使用可能である。
+    # 結果：仮説通り
+    pre_tasks:
+      - name: CSV ファイルを読み込む
+        read_csv:
+          path: ./csv_files/server_parameter.csv
+          delimiter: ","
+          key: hostname
+        register: _result_server_parameter
+        delegate_to: localhost
+
+    roles:
+      - role: read_csv
+...
