@@ -8,6 +8,7 @@
 ## ディレクトリ構成
 
 * challenges_ansible/
+  * csv_files/
   * group_vars/
   * host_vars/
   * production/
@@ -17,6 +18,8 @@
       * files/
       * tasks/
       * vars/
+    * read_csv/
+      * tasks/
     * win_update/
       * tasks/
       * vars/
@@ -24,4 +27,5 @@
     * hosts
   * ansible.cfg
   * site.yml  (master playbook)
+  * test_csv.yml
   * win_update_stagin.yml
