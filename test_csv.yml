@@ -14,6 +14,18 @@
         register: _result_server_parameter
         delegate_to: localhost
 
+      - name: read dns.csv
+        read_csv:
+          path: ./csv_files/dns.csv
+        register: _result_dns
+        delegate_to: localhost
+
+      - name: read wins.csv
+        read_csv:
+          path: ./csv_files/wins.csv
+        register: _result_wins
+        delegate_to: localhost
+
     roles:
       - role: read_csv
 ...
