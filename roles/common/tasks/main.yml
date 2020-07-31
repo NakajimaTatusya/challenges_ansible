@@ -1,6 +1,6 @@
 ---
   # OS 初期設定
-  - include_tasks: win_ping.yml
+  #- include_tasks: win_ping.yml
   - include_tasks: win_disable_uac.yml
   - include_tasks: win_set_optical_drive_letter.yml
   - include_tasks: win_set_password_policy.yml
@@ -28,5 +28,5 @@
   - include_tasks: win_set_dns.yml
   - include_tasks: win_set_wins.yml
   - include_tasks: win_change_administrator_password.yml
-  - include_tasks: win_ping.yml
+  #- include_tasks: win_ping.yml
 ...
