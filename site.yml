@@ -5,10 +5,21 @@
     gather_facts: true
 
     pre_tasks:
+      - name: 設定前の状態出力(facts)
+        debug: 
+          var: ansible_facts
+      - name: 設定前の状態出力(systeminfo command)
+        win_command: systeminfo
+        register: _result_info
+      - name: display system information
+        debug: 
+          var: _result_info
+
       - name: c:\tmp ディレクト作成
         win_file:
           path: c:\tmp\
           state: directory
+
       - name: Read Server Parameter Main CSV File
         read_csv:
           path: ./csv_files/server_parameter.csv
@@ -28,4 +39,15 @@
 
     roles:
       - role: common
+
+    post_tasks:
+      - name: 設定完了後の状態出力(facts)
+        debug: 
+          var: ansible_facts
+      - name: 設定完了後の状態出力(systeminfo command)
+        win_command: systeminfo
+        register: _result_info
+      - name: display system information
+        debug: 
+          var: _result_info
 ...
