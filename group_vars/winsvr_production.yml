@@ -1,6 +1,4 @@
 ---
-  # IE Start page url
-  gv_start_page_url: "https://www.google.com/?hl=ja"
   # ZoneMap:Range
   gv_list_add_url:
     - ipaddress_data: 100.100.100.1
@@ -27,22 +25,20 @@
     - domain_string: hogehoge.com
       protocol_name: https
       protocol_id: 2
-  # ie or winhttp 設定
-  gv_proxy: http=example.local:8080;https=sample.local:8443
   # 除外リスト
-  gv_list_bypass:
-    - <-loopback>
-    - <local>
-    - 10.*.*.*
-    - "*.hogehoge.local"
+#  gv_list_bypass:
+#    - <-loopback>
+#    - <local>
+#    - 10.*.*.*
+#    - "*.hogehoge.local"
   # WINS の IPV4 アドレス
-  gv_wins_ipaddress:
-    - interface_name: イーサネット
-      wins_settings:
-        - ipaddress: 10.0.0.1
-          index: 0
-        - ipaddress: 10.0.0.2
-          index: 1
-        - ipaddress: 10.0.0.3
-          index: 2
+#  gv_wins_ipaddress:
+#    - interface_name: イーサネット
+#      wins_settings:
+#        - ipaddress: 10.0.0.1
+#          index: 0
+#        - ipaddress: 10.0.0.2
+#          index: 1
+#        - ipaddress: 10.0.0.3
+#          index: 2
 ...
