@@ -9,7 +9,7 @@
       - name: Read Server Parameter Main CSV File
         read_csv:
           path: ./csv_files/server_parameter.csv
-          key: csv_hostname
+          key: csv_hosts
         register: _result_server_parameter
         delegate_to: localhost
 
