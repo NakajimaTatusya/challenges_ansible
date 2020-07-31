@@ -5,11 +5,11 @@
 
   - name: 上位のPlayBookでCSVを読み込んで ROLE で参照できるか？
     debug:
-      msg: "{{ _result_server_parameter.dict[inventory_hostname].workgroupname }}"
+      msg: "{{ _result_server_parameter.dict[inventory_hostname].csv_workgroup }}"
 
   - name: 上位のPlayBookでCSVを読み込んで ROLE で参照できるか？
     debug:
-      msg: "{{ item.memo }}"
+      msg: "{{ item.csv_workgroup }}"
     with_items:
       - "{{ _result_server_parameter.dict[inventory_hostname] }}"
 ...

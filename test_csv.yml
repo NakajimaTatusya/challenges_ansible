@@ -6,21 +6,20 @@
     # 仮説：ここで定義された変数は読み込まれたロールでも使用可能である。
     # 結果：仮説通り
     pre_tasks:
-      - name: CSV ファイルを読み込む
+      - name: Read Server Parameter Main CSV File
         read_csv:
           path: ./csv_files/server_parameter.csv
-          delimiter: ","
-          key: hostname
+          key: csv_hostname
         register: _result_server_parameter
         delegate_to: localhost
 
-      - name: read dns.csv
+      - name: Read dns.csv
         read_csv:
           path: ./csv_files/dns.csv
         register: _result_dns
         delegate_to: localhost
 
-      - name: read wins.csv
+      - name: Read wins.csv
         read_csv:
           path: ./csv_files/wins.csv
         register: _result_wins

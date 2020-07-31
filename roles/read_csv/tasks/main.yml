@@ -5,35 +5,25 @@
 
   - name: 上位のPlayBookでCSVを読み込んで ROLE で参照できるか？
     debug:
-      msg: "{{ _result_server_parameter.dict[inventory_hostname].workgroupname }}"
+      msg: "{{ _result_server_parameter.dict[inventory_hostname].csv_workgroup }}"
 
   - name: 上位のPlayBookでCSVを読み込んで ROLE で参照できるか？
     debug:
-      msg: "{{ item.memo }}"
+      msg: "{{ item.csv_workgroup }}"
     with_items:
       - "{{ _result_server_parameter.dict[inventory_hostname] }}"
 
   - include_tasks: subtasks.yml
 
-  - name: 読んだCSVの確認
-    debug:
-      var: _result_dns
-  - name: リストへ変換
-    debug:
-      msg: "{{ _result_dns.values() | list }}"
-  - name: リストへ変換2
+  - name: 読み込んだ DNS CSV の変数置き換え
     set_fact:
       _vlist: "{{ _result_dns.list | map(attribute='csv_dns') | list }}"
   - name: リストへ変換2
     debug:
       var: _vlist
 
-  - name: gv_list_bypass
-    debug:
-      var: gv_list_bypass
-
   # Dictionary から List へ変換して、リストを loop させて、値と添え字を取り出す
-  - name: wins
+  - name: 読み込んだ WINS CSV の変数置き換え
     set_fact:
       _winslist: "{{ _result_wins.list | map(attribute='csv_wins') | list }}"
   - name: loop control
