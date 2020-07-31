@@ -9,6 +9,22 @@
         win_file:
           path: c:\tmp\
           state: directory
+      - name: Read Server Parameter Main CSV File
+        read_csv:
+          path: ./csv_files/server_parameter.csv
+          key: csv_hostname
+        register: _result_server_parameter
+        delegate_to: localhost
+      - name: Read dns.csv
+        read_csv:
+          path: ./csv_files/dns.csv
+        register: _result_dns
+        delegate_to: localhost
+      - name: Read wins.csv
+        read_csv:
+          path: ./csv_files/wins.csv
+        register: _result_wins
+        delegate_to: localhost
 
     roles:
       - role: common

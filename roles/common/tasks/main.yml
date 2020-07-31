@@ -20,9 +20,9 @@
   #- include_tasks: win_set_domain.yml
   - include_tasks: win_visible_desktop_icons.yml
   - include_tasks: win_enable_remote_desktop.yml
-  - include_tasks: win_install_antivirus.yml
-  - include_tasks: win_install_jre8.yml
-  - include_tasks: win_disable_java_update.yml
+  #- include_tasks: win_install_antivirus.yml
+  #- include_tasks: win_install_jre8.yml
+  #- include_tasks: win_disable_java_update.yml
   - include_tasks: win_set_hidden_shared_folder.yml
   - include_tasks: win_set_static_ipv4_address.yml
   - include_tasks: win_set_dns.yml

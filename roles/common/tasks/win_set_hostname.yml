@@ -1,7 +1,7 @@
 ---
   - name: "Windows Server 2016 のホスト名を設定する"
     win_hostname: 
-      name: "{{ hv_host_name }}"
+      name: "{{ _result_server_parameter.dict[inventory_hostname].csv_hostname }}"
     register: _result_hostname
 
   - name: "変更前のホスト名"

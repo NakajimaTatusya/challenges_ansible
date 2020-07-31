@@ -8,10 +8,11 @@
       start_mode: auto
 
   - name: Configure NTP
-    win_command: w32tm /config /manualpeerlist:"{{ gv_peers }}" /reliable:yes /update
+    win_command: w32tm /config /manualpeerlist:"{{ _result_server_parameter.dict[inventory_hostname].csv_ peers }}" /reliable:yes /update
     args:
       output_encoding_override: shift_jis
     changed_when: false
+    when: _result_server_parameter.dict[inventory_hostname].csv_ peers != ""
 
   - name: confirm
     win_command: w32tm /query /status

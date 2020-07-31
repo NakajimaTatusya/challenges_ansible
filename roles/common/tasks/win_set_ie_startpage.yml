@@ -3,5 +3,5 @@
     win_regedit:
       path: HKCU:\Software\Microsoft\Internet Explorer\Main\
       name: start page
-      data: "{{ gv_start_page_url }}"
+      data: "{{ _result_server_parameter.dict[inventory_hostname].csv_startpage }}"
 ...
