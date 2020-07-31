@@ -1,9 +1,9 @@
 ---
-  - name: Get a datetime for logfile name
+  - name: ログファイル名のサフィックス（日時）を取得
     local_action: command date +%Y%m%d%H%M%S
     register: _result_local_action
 
-  - name: Do Windows Update
+  - name: Windows Update を実行する
     win_updates:
       category_names:
         - Application
@@ -23,21 +23,22 @@
       state: installed
     register: _result_win_update
 
-  - name: Debug display update results
+  - name: Windows Update の結果をディスプレイに表示
     debug:
       var: _result_win_update
       verbosity: 0
 
-  - name: Get a win_update log file from a remote Windows server.
+  - name: サーバーからログファイルを収集する
     fetch:
       src: "C:\\tmp\\ansible_win_update_{{ inventory_hostname }}_{{ _result_local_action.stdout }}.log"
       dest: "{{ _local_logfile_path }}"
       flat: yes
 
-  - meta: end_host
+  - name: Windows Update が一つも行われなかったので終了する
+    meta: end_host
     when: not _result_win_update.changed
 
-  - name: reboot if needed
+  - name: 再起動が必要な場合は行う
     win_reboot:
       reboot_timeout: 3600
     when: _result_win_update.reboot_required
