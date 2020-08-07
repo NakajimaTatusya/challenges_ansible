@@ -1,0 +1,13 @@
+---
+  - name: Windows Server 2016 を HyperV にデプロイします
+    hosts: winsvr_host
+    gather_facts: false
+    
+    pre_tasks:
+
+    roles:
+      - role: deploy
+
+    post_tasks:
+
+...
