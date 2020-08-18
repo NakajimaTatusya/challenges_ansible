@@ -1,7 +1,7 @@
 ﻿# required charactor code utf-8 BOM
 
 # import config
-. ".\config.ps1"
+. "D:\temp\config.ps1"
 # Windows Server 2016 
 # Get-WindowsImage -ImagePath "d:\sources\install.wim" の結果。ISOイメージをマウントして、install.wim からインストールイメージの名称を取得した。
 # !!! ImageNameだとうまくいかない、ImageIndexでうまくいった。 !!!
@@ -10,7 +10,7 @@
 # index=3 name=Windows Server 2016 Datacenter Evaluation
 # index=4 name=Windows Server 2016 Datacenter Evaluation (デスクトップ エクスペリエンス)
 # select and set to Edtion variable.
-. ".\Convert-WindowsImage.ps1"
+. "D:\temp\Convert-WindowsImage.ps1"
 
 if ((Get-Item $unattend_file_path) -is [System.IO.DirectoryInfo])
 {
