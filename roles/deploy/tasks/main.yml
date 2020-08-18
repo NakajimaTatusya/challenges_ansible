@@ -2,15 +2,31 @@
   - name: Windows Server 2016 を HyperV にデプロイします
     template:
       src: "config_template.j2"
-      dest: "library/config.ps1"
+      dest: "~/challenges_ansible/roles/deploy/library/config.ps1"
       output_encoding: utf_8_sig
+    delegate_to: localhost
 
-  - name: send unattend.xml file
+  - name: send unattend.xml file to remote
     win_copy:
       src: "unattend.xml"
       dest: "{{ _remote_unattend_file_path }}"
 
+  - name: send ps files to remote
+    win_copy:
+      src: "library/config.ps1"
+      dest: "{{ _remote_unattend_file_path }}"
+
+  - name: send ps files to remote
+    win_copy:
+      src: "library/Deploy-WindowsServer.ps1"
+      dest: "{{ _remote_unattend_file_path }}"
+
+  - name: send ps files to remote
+    win_copy:
+      src: "library/Convert-WindowsImage.ps1"
+      dest: "{{ _remote_unattend_file_path }}"
+
   - name: create vhdx file and new VM.
-    script: library/Deploy-WindowsServer.ps1
+    win_shell: D:\temp\Deploy-WindowsServer.ps1
 
 ...
