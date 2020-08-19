@@ -10,5 +10,7 @@
       $drive =  Get-WmiObject -Class win32_volume -Filter $driveLetter
       Set-WmiInstance -input $drive -Arguments @{DriveLetter='"{{ _result_server_parameter.dict[inventory_hostname].csv_drive_letter }}:"'}
     register: _result_ps
-    when: _result_driveletter.stdout_lines[0] != _result_server_parameter.dict[inventory_hostname].csv_drive_letter
+    when: 
+      - _result_driveletter.stdout_lines|length > 0
+      - _result_driveletter.stdout_lines[0] != _result_server_parameter.dict[inventory_hostname].csv_drive_letter
 ...
