@@ -1,17 +1,15 @@
 ---
   _remote_unattend_file_path: D:\\temp\\
 
-  j2_do_convert: "$true"
   j2_conv_src_path: "\"D:\\Download\\Windows Server 2016\\14393.0.161119-1705.RS1_REFRESH_SERVER_EVAL_X64FRE_JA-JP.ISO\""
   j2_unattend_file_path: "\"D:\\temp\\unattend.xml\""
   j2_vhdx_output_path: "\"D:\\temp\\14393.0.161119-1705.RS1_REFRESH_SERVER_EVAL_X64FRE_JA-JP.vhdx\""
-  j2_do_createvm: "$true"
   j2_vm_home_path: "\"D:\\VMs\\\""
   j2_vm_name: "\"Ansible-Win2016-01\""
   j2_vm_vhd_path: "\"D:\\VMs\\$vm_name\\Virtual Hard Disk\\\""
   j2_vm_cpu_count: 2
   j2_vm_memory_size: 2GB
-  j2_vm_hdd_size: 1000GB
+  j2_vm_hdd_size: 500GB
   j2_vm_switch: "\"Broadcom NetXtreme Gigabit Ethernet - Virtual Switch\""
   j2_network_adapter_name: "\"イーサネット\""
 ...
