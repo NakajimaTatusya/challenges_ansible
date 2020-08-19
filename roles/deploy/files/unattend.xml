@@ -128,7 +128,7 @@
             <SkipRearm>1</SkipRearm>
         </component>
     </settings>
-    <settings pass="specialize">
+    <settings pass="specialize">    
         <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
             xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -154,6 +154,22 @@
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <ComputerName>AnsibleDemo1</ComputerName>
         </component>
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" 
+            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" 
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <RunSynchronous>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>1</Order>
+                    <Path>winrm set winrm/config/service/auth '@{Basic="true"}'</Path>
+                    <WillReboot>Never</WillReboot>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>2</Order>
+                    <Path>winrm set winrm/config/service '@{AllowUnencrypted="true"}'</Path>
+                    <WillReboot>Never</WillReboot>
+                </RunSynchronousCommand>
+            </RunSynchronous>
+        </component>
         <component name="Microsoft-Windows-TCPIP" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
             xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -170,18 +186,9 @@
                         <RouterDiscoveryEnabled>true</RouterDiscoveryEnabled>
                     </Ipv6Settings>
                     <Identifier>イーサネット</Identifier>
-                        <UnicastIpAddresses>
-                            <IpAddress wcm:action="add" wcm:keyValue="1">192.168.1.203/24</IpAddress>
-                            <!-- <IpAddress wcm:action="add" wcm:keyValue="2">ffff:1::3/48</IpAddress> -->
-                        </UnicastIpAddresses>
-                    <Routes>
-                        <Route wcm:action="add">
-                            <Identifier>1</Identifier>
-                            <Metric>10</Metric>
-                            <NextHopAddress>192.168.1.0</NextHopAddress>
-                            <Prefix>24</Prefix>
-                        </Route>
-                    </Routes>
+                    <UnicastIpAddresses>
+                        <IpAddress wcm:action="add" wcm:keyValue="1">192.168.1.11/24</IpAddress>
+                    </UnicastIpAddresses>
                 </Interface>
             </Interfaces>
         </component>
@@ -205,10 +212,10 @@
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <AutoLogon>
                 <Password>
-                    <Value></Value>
+                    <Value>45wfT%RTaAK</Value>
                     <PlainText>true</PlainText>
                 </Password>
-                <Enabled>false</Enabled>
+                <Enabled>true</Enabled>
                 <Username>Administrator</Username>
             </AutoLogon>
             <OOBE>
@@ -241,7 +248,7 @@
             </FirstLogonCommands>
             <UserAccounts>
                 <AdministratorPassword>
-                    <Value>P@ssw0rd</Value>
+                    <Value>45wfT%RTaAK</Value>
                     <PlainText>true</PlainText>
                 </AdministratorPassword>
                 <LocalAccounts>
