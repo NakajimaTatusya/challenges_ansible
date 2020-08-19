@@ -6,7 +6,7 @@
 
   - name: hidden shared folder settings
     win_share:
-      name: tmp$
+      name: apps$
       description: created hidden shared folder by ansible
       path: "{{ _result_server_parameter.dict[inventory_hostname].csv_shared_folder }}"
       list: no
