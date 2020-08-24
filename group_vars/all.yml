@@ -2,7 +2,8 @@
     # Global variables
 
     ansible_user: Administrator
-    ansible_password: P@ssw0rd-4192
+    #ansible_password: Passw0rd
+    ansible_password: 45wfT%RTaAK
     ansible_connection: winrm
     ansible_port: 5985
     ansible_winrm_server_cert_validation: ignore
