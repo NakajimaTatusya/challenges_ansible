@@ -1,4 +1,7 @@
 ---
+  - name: ホストに到達できなかった場合次来た時に再接続できるようにエラーフラグをクリアする
+    meta: clear_host_errors
+
   - name: ログファイル名のサフィックス（日時）を取得
     local_action: command date +%Y%m%d%H%M%S
     register: _result_local_action
