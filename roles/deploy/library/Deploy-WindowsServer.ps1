@@ -42,7 +42,8 @@ if (-not $work)
 Write-Host "create new VM."
 New-VM -Name $vm_name -Path $vm_home_path -MemoryStartupBytes $vm_memory_size -SwitchName $vm_switch -Generation 2 -NoVHD
 Write-Host "Add DVD Drive."
-Get-VMIdeController -VMName $vm_name | Add-VMDvdDrive -Path D:\
+# add optical drive
+Add-VMDvdDrive -VMName $vm_name
 
 Write-Host "一時的に VM satrt"
 Start-VM $vm_name
