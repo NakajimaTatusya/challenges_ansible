@@ -2,60 +2,60 @@
   # OS 初期設定
   #- include_tasks: win_ping.yml
   - name: "UACを無効にする"
-  - include_tasks: win_disable_uac.yml
+    include_tasks: win_disable_uac.yml
 
   - name: "光学ドライブレターをQに設定する"
-  - include_tasks: win_set_optical_drive_letter.yml
+    include_tasks: win_set_optical_drive_letter.yml
 
   - name: "パスワードポリシーを変更する"
-  - include_tasks: win_set_password_policy.yml
+    include_tasks: win_set_password_policy.yml
 
   - name: "Microsoft Defender を無効にする"
-  - include_tasks: win_disable_defender.yml
+    include_tasks: win_disable_defender.yml
 
   - name: "フィードバックを無効にする"
-  - include_tasks: win_disable_feedback.yml
+    include_tasks: win_disable_feedback.yml
 
   - name: "ファイアウォールを無効にする"
-  - include_tasks: win_disable_firewall.yml
+    include_tasks: win_disable_firewall.yml
 
   - name: "IPV6を無効にする"
-  - include_tasks: win_disable_ipv6.yml
+    include_tasks: win_disable_ipv6.yml
 
   - name: "ホスト名を設定する"
-  - include_tasks: win_set_hostname.yml
+    include_tasks: win_set_hostname.yml
 
   - name: "Internet Explorer の高度セキュリティ強化を設定する"
-  - include_tasks: win_set_ie_esc.yml
+    include_tasks: win_set_ie_esc.yml
 
   - name: "Internet Explorer の Proxy All Users を設定する"
-  - include_tasks: win_set_ie_proxy_allusers.yml
+    include_tasks: win_set_ie_proxy_allusers.yml
 
   - name: "Internet Explorer の Proxy User を設定する"
-  - include_tasks: win_set_ie_proxy_user.yml
+    include_tasks: win_set_ie_proxy_user.yml
 
   - name: "Internet Explorer のローカルイントラネットを設定する"
-  - include_tasks: win_set_add_local_intranet.yml
+    include_tasks: win_set_add_local_intranet.yml
 
   - name: "Internet Explorer のスタートページを設定する"
-  - include_tasks: win_set_ie_startpage.yml
+    include_tasks: win_set_ie_startpage.yml
 
   - name: "NTPサーバーを設定する"
-  - include_tasks: win_set_ntp.yml
+    include_tasks: win_set_ntp.yml
 
   - name: "winhttp proxy を設定する"
-  - include_tasks: win_set_winhttp.yml
+    include_tasks: win_set_winhttp.yml
 
   - name: "WORKGROUP を設定する"
-  - include_tasks: win_set_workgroup.yml
+    include_tasks: win_set_workgroup.yml
 
   #- include_tasks: win_set_domain.yml
 
   - name: "デスクトップアイコンを設定する"
-  - include_tasks: win_visible_desktop_icons.yml
+    include_tasks: win_visible_desktop_icons.yml
 
   - name: "リモートデスクトップを有効にする"
-  - include_tasks: win_enable_remote_desktop.yml
+    include_tasks: win_enable_remote_desktop.yml
 
   #- include_tasks: win_install_antivirus.yml
 
@@ -64,19 +64,19 @@
   #- include_tasks: win_disable_java_update.yml
 
   - name: "隠し共有フォルダを設定する"
-  - include_tasks: win_set_hidden_shared_folder.yml
+    include_tasks: win_set_hidden_shared_folder.yml
 
   - name: "静的IPアドレスを設定する"
-  - include_tasks: win_set_static_ipv4_address.yml
+    include_tasks: win_set_static_ipv4_address.yml
 
   - name: "DNS を設定する"
-  - include_tasks: win_set_dns.yml
+    include_tasks: win_set_dns.yml
 
   - name: "WINS を設定する"
-  - include_tasks: win_set_wins.yml
+    include_tasks: win_set_wins.yml
 
   - name: "Administrator Password を変更する"
-  - include_tasks: win_change_administrator_password.yml
+    include_tasks: win_change_administrator_password.yml
 
   #- include_tasks: win_ping.yml
 
