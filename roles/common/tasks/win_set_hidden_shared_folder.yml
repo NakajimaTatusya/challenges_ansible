@@ -10,7 +10,6 @@
       description: created hidden shared folder by ansible
       path: "{{ _result_server_parameter.dict[inventory_hostname].csv_shared_folder }}"
       list: no
-      full: Administrator
-      read: everyone
+      full: Administrator,everyone
       state: present
 ...
