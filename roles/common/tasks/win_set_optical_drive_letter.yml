@@ -7,8 +7,8 @@
   - name: set "{{ _result_server_parameter.dict[inventory_hostname].csv_drive_letter }}" to the optical drive letter
     win_shell: |
       $driveLetter = "DriveLetter = '" + (Get-Volume | ?{$_.DriveType -match 'CD-ROM'}).driveletter + ":'"
-      $drive =  Get-WmiObject -Class win32_volume -Filter $driveLetter
-      Set-WmiInstance -input $drive -Arguments @{DriveLetter='"{{ _result_server_parameter.dict[inventory_hostname].csv_drive_letter }}:"'}
+      $drive = Get-WmiObject -Class win32_volume -Filter $driveLetter
+      Set-WmiInstance -input $drive -Arguments @{DriveLetter='{{ _result_server_parameter.dict[inventory_hostname].csv_drive_letter }}:'}
     register: _result_ps
     when: 
       - _result_driveletter.stdout_lines|length > 0
