@@ -14,18 +14,25 @@
   * production/
     * hosts
   * roles/
-    * common/
+    * common/       Windows Server 向け基本設定
       * files/
       * tasks/
       * vars/
-    * read_csv/
+    * deploy/       ISOイメージからVHDXファイルを作成して、Hyper-V にデプロイする
+      * files/
+      * library/    PowerShell Scripts ちゃんとしたモジュールにはなっていません
       * tasks/
-    * win_update/
+      * templates/
+      * vars/
+    * read_csv/     CSV ファイルを読み込んで、変数を書き換えるテスト
+      * tasks/
+    * win_update/   Windows Update を自動化
       * tasks/
       * vars/
   * staging/
     * hosts
   * ansible.cfg
-  * site.yml  (master playbook)
-  * test_csv.yml
-  * win_update_stagin.yml
+  * site.yml  (基本設定実行)
+  * test_csv.yml （CSVファイルのテスト）
+  * win_update_stagin.yml （Windows Update を実行）
+  * win_2016_deploy.yml （Hyper-Vに構築）
