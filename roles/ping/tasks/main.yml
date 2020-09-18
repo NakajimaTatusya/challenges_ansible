@@ -1,0 +1,9 @@
+---
+    - name: 疎通確認
+      win_ping:
+      register: _result_ping
+
+    - name: debug
+      debug:
+        var: _result_ping
+...

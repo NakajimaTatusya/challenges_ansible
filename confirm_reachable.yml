@@ -1,0 +1,7 @@
+---
+  - hosts: winsvr_staging
+    gather_facts: false
+
+    roles:
+      - role: ping
+...
