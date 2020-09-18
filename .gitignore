@@ -1,3 +1,4 @@
 *.exe
 config.ps1
 *.log
+ansible.cfg
