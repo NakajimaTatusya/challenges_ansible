@@ -1,9 +1,10 @@
 ---
-    - name: 疎通確認
+    - name: 疎通確認実行
       win_ping:
+        data: "pong"
       register: _result_ping
 
-    - name: debug
+    - name: 疎通確認結果出力
       debug:
         var: _result_ping
 ...
