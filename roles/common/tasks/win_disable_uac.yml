@@ -1,5 +1,5 @@
 ---
-  - name: UAC 無効化
+  - name: UAC 無効化を実行
     win_regedit:
       path: "{{ item.path }}"
       name: "{{ item.name }}"

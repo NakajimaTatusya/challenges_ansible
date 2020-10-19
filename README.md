@@ -24,15 +24,20 @@
       * tasks/
       * templates/
       * vars/
+    * dotNet35/ (ダウンロードしたファイルから dotNetFramework3.5 をインストールする)
+      * files/
+      * tasks/
+      * vars/
+    * ping/
+      * tasks/
     * read_csv/     （CSV ファイルを読み込んで、変数を書き換えるテスト）
       * tasks/
     * win_update/   （Windows Update を自動化）
       * tasks/
       * vars/
-  * staging/
-    * hosts
   * ansible.cfg
-  * site.yml  (基本設定実行)
   * test_csv.yml （CSVファイルのテスト）
-  * win_update_stagin.yml （Windows Update を実行）
-  * win_2016_deploy.yml （Hyper-Vに構築）
+  * win_2016_deploy.yml （VHDXファイル作成）
+  * win_common.yml  (基本設定)
+  * win_confirm_reachable.yml（疎通確認）
+  * win_update.yml （Windows Update）

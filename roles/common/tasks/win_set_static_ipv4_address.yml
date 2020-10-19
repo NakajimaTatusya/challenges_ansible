@@ -1,5 +1,5 @@
 ---
-  - name: PowerShell で静的IPアドレス、DefaultGatewayを変更する
+  - name: "PowerShell で静的IPアドレス、DefaultGatewayを変更する"
     win_shell: |
       Get-NetAdapter | Remove-NetRoute -DestinationPrefix 0.0.0.0/0 -confirm:$false
       Get-NetAdapter | Remove-NetIPAddress -confirm:$false
@@ -8,11 +8,11 @@
     async: 100 # Using "fire-and-forget" asynchronous execution for this task, otherwise it will always fail and timeout
     poll: 0
 
-  - name: Change ansible's ip address for each host
+  - name: "Ansible 接続先ホストの IP アドレスを再設定する"
     set_fact:
       ansible_host: "{{ _result_server_parameter.dict[inventory_hostname].csv_ipv4 }}"
 
-  - name: Wait for the hosts network interface to come back up
+  - name: "再接続が完了するまで待機する"
     local_action:
       module: wait_for
       host: "{{ ansible_host }}"

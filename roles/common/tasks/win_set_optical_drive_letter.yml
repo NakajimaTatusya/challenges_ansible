@@ -1,10 +1,10 @@
 ---
-  - name: 光学ディスクのドライブレターを変更する
+  - name: "光学ディスクのドライブレターを変更する"
     win_shell: |
       (Get-Volume | ?{$_.DriveType -match 'CD-ROM'}).driveletter
     register: _result_driveletter
 
-  - name: set "{{ _result_server_parameter.dict[inventory_hostname].csv_drive_letter }}" to the optical drive letter
+  - name: 光学ドライブのドライブレターを "{{ _result_server_parameter.dict[inventory_hostname].csv_drive_letter }}" に設定する
     win_shell: |
       $driveLetter = "DriveLetter = '" + (Get-Volume | ?{$_.DriveType -match 'CD-ROM'}).driveletter + ":'"
       $drive = Get-WmiObject -Class win32_volume -Filter $driveLetter

@@ -1,25 +1,25 @@
 ---
   # NIC 複数の対応は後で
-  - name: WINS サーバーの設定を行う
+  - name: "WINS サーバーの設定を行う"
     win_command: netsh interface ipv4 show winsservers name=イーサネット
     register: _result_config
     tags: netsh_config
 
-  - name: debug
+  - name: "WINS サーバーの設定結果を出力する"
     debug:
       var: _result_config
 
-  - name: 読み込んだ WINS CSV の変数置き換え
+  - name: "読み込んだ WINS CSV の変数置き換え"
     set_fact:
       _winslist: "{{ _result_wins.list | map(attribute='csv_wins') | list }}"
 
-  - name: delete WINS
+  - name: "WINS 設定を削除する"
     win_command: netsh interface ipv4 delete winsservers "イーサネット" addr=all
     register: _result_delete
     when: _result_config.stdout | regex_search('None') != "None"
     tags: delete_wins
 
-  - name: Set WINS
+  - name: "WINS 設定を行う"
     win_command: netsh interface ipv4 add winsservers "イーサネット" {{ item }} index={{ _wins_index }}
     loop: "{{ _winslist }}"
     loop_control:

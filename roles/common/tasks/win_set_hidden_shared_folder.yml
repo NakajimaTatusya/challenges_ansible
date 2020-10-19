@@ -4,7 +4,7 @@
       path: "{{ _result_server_parameter.dict[inventory_hostname].csv_shared_folder }}"
       state: directory
 
-  - name: hidden shared folder settings
+  - name: 共有隠しフォルダの設定を行う
     win_share:
       name: apps$
       description: created hidden shared folder by ansible

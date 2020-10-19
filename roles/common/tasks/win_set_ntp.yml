@@ -1,20 +1,20 @@
 ---
   # NTP の設定を行った後に、win32tm の標準出力をLinuxサーバー側で表示すると文字化けする
   # そのために、win_shell,win_command モジュールのソースコードを変更した
-  - name: NTP の設定を行う(w32time)
+  - name: "NTP の設定を行う(w32time)"
     win_service:
       name: w32time
       state: started
       start_mode: auto
 
-  - name: Configure NTP
+  - name: "NTP 設定を行う"
     win_command: w32tm /config /manualpeerlist:"{{ _result_server_parameter.dict[inventory_hostname].csv_peers }}" /reliable:yes /update
     args:
       output_encoding_override: shift_jis
     changed_when: false
     when: _result_server_parameter.dict[inventory_hostname].csv_peers != ""
 
-  - name: confirm
+  - name: "NTP 設定結果を出力する"
     win_command: w32tm /query /status
     args:
       output_encoding_override: shift_jis

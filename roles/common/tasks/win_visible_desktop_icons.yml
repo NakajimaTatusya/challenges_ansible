@@ -1,5 +1,5 @@
 ---
-  - name: デスクトップアイコンの表示（PC、ごみ箱、ユーザーフォルダ、コントロールパネル、ネットワーク）
+  - name: "デスクトップアイコンの表示（PC、ごみ箱、ユーザーフォルダ、コントロールパネル、ネットワーク）"
     win_regedit:
         path: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel
         name: "{{ item }}"

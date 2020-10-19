@@ -1,5 +1,5 @@
 ---
-  - name: Winhttp proxy を設定する
+  - name: "Winhttp proxy を設定する"
     win_http_proxy:
       proxy: "{{ _result_server_parameter.dict[inventory_hostname].csv_winhttp_proxy }}"
       bypass: "{{ gv_list_bypass }}"

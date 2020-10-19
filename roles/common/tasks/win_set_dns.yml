@@ -7,6 +7,7 @@
   - name: 読み込んだ DNS CSV の変数置き換え
     set_fact:
       _dnslist: "{{ _result_dns.list | map(attribute='csv_dns') | list }}"
+
   - name: "DNSを設定する"
     win_dns_client:
       adapter_names: "イーサネット"

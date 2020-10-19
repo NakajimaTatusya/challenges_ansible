@@ -1,5 +1,5 @@
 ---
-  - name: インターネットエクスプローラーのスタートページを設定する
+  - name: "インターネットエクスプローラーのスタートページを設定する"
     win_regedit:
       path: HKCU:\Software\Microsoft\Internet Explorer\Main\
       name: start page

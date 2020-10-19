@@ -9,7 +9,7 @@
       state: domain
     register: _result_domain_membership
 
-  - name: do reboot
+  - name: 再起動を行う
     win_reboot:
       reboot_timeout: 3600
     when: _result_domain_membership.reboot_required
