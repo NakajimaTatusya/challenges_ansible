@@ -26,7 +26,7 @@
       state: installed
     register: _result_win_update
 
-  - name: Windows Update の結果をディスプレイに表示
+  - name: Windows Update の結果
     debug:
       var: _result_win_update
       verbosity: 0
