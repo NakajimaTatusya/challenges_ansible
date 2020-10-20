@@ -1,5 +1,5 @@
 ---
-  - hosts: winsvr_staging
+  - hosts: winsvr_product
     gather_facts: false
 
     roles:
