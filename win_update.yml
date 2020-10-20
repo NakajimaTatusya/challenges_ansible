@@ -1,7 +1,6 @@
 ---
   # windows update role playbook
-  - hosts: winsvr_staging
-#  - hosts: winsvr_production
+  - hosts: winsvr_product
     gather_facts: true
 
     pre_tasks:
@@ -13,7 +12,7 @@
         win_file:
           path: "{{ remote_temporary_path }}"
           state: directory
-        when: _result_test_path == "False"
+        when: _result_test_path.stdout_lines[0] == "False"
 
     roles:
       - role: win_update
