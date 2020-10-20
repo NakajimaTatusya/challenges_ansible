@@ -21,7 +21,7 @@
         - Tools
         - UpdateRollups
         - Updates
-      log_path: "C:\\tmp\\ansible_win_update_{{ inventory_hostname }}_{{ _result_local_action.stdout }}.log"
+      log_path: "{{ remote_temporary_path }}ansible_win_update_{{ inventory_hostname }}_{{ _result_local_action.stdout }}.log"
       server_selection: windows_update
       state: installed
     register: _result_win_update
@@ -33,7 +33,7 @@
 
   - name: サーバーからログファイルを収集する
     fetch:
-      src: "C:\\tmp\\ansible_win_update_{{ inventory_hostname }}_{{ _result_local_action.stdout }}.log"
+      src: "{{ remote_temporary_path }}ansible_win_update_{{ inventory_hostname }}_{{ _result_local_action.stdout }}.log"
       dest: "{{ local_logfile_path }}"
       flat: yes
 
