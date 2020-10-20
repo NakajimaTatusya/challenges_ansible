@@ -1,7 +1,6 @@
 ---
   # master playbook
-  - hosts: winsvr_staging
-#  - hosts: winsvr_production
+  - hosts: winsvr_product
     gather_facts: true
 
     pre_tasks:
@@ -23,7 +22,7 @@
         win_file:
           path: "{{ remote_temporary_path }}"
           state: directory
-        when: _result_test_path == "False"
+        when: _result_test_path.stdout_lines[0] == "False"
 
       - name: "サーバーパラメータ CSV File から読み込み"
         read_csv:
