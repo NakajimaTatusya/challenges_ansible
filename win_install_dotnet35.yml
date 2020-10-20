@@ -1,0 +1,25 @@
+---
+# install dotNetFramework3.5
+  - hosts: winsvr_product
+    gather_facts: true
+
+    pre_tasks:
+      - name: "{{ remote_temporary_path }} ディレクト存在確認"
+        win_shell: Test-Path "{{ remote_temporary_path }}"
+        register: _result_test_path
+
+      - name: "{{ remote_temporary_path }} ディレクトが無ければ作成"
+        win_file:
+          path: "{{ remote_temporary_path }}"
+          state: directory
+        when: _result_test_path.stdout_lines[0] == "False"
+
+    roles:
+      - role: dotNet35
+
+    post_tasks:
+      - name: "リモートの作業ディレクトリ削除"
+        win_file:
+          path: "{{ remote_temporary_path }}"
+          state: absent
+...
