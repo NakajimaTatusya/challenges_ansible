@@ -2,3 +2,4 @@
 config.ps1
 *.log
 ansible.cfg
+server_parameter_product.csv

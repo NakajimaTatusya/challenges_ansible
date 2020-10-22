@@ -78,6 +78,8 @@
   - name: "Administrator Password を変更する"
     include_tasks: win_change_administrator_password.yml
 
-  #- include_tasks: win_ping.yml
+  - name: "Windows OS のアクティベーションを行う"
+    include_tasks: win_activation.yml
 
+  #- include_tasks: win_ping.yml
 ...

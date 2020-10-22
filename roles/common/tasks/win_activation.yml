@@ -1,0 +1,23 @@
+---
+  - name: windows activation を行う
+    win_shell: |
+      $computer = gc env:computername
+      $key = {{ _result_server_parameter.dict[inventory_hostname].csv_product_key }}
+      $service = Get-WmiObject -query "select * from SoftwareLicensingService" -computername $computer
+      $service.InstallProductKey($key)
+      $service.RefreshLicenseStatus()
+    register: _reuslt
+
+  - name: activation 結果
+    debug:
+      var: _result
+  
+  - name: activation 結果
+    win_shell: |
+      Get-CimInstance SoftwareLicensingProduct | Where-Object { $_.PartialProductKey } | Select-Object Description, LicenseStatus
+    register: _result_license_info
+
+  - name: activation 結果
+    debug:
+      var: _result_license_info
+...
