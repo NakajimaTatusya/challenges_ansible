@@ -1,5 +1,5 @@
 ---
-  - name: Windows Server 2016 を HyperV にデプロイします
+  - name: Windows Server xxxx を HyperV にデプロイします
     hosts: winsvr_host
     gather_facts: false
     
