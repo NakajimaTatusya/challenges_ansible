@@ -26,7 +26,7 @@
 
       - name: "サーバーパラメータ CSV File から読み込み"
         read_csv:
-          path: ./csv_files/server_parameter.csv
+          path: ./csv_files/server_parameter_product.csv
           key: csv_hosts
         register: _result_server_parameter
         delegate_to: localhost
