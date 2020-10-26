@@ -47,7 +47,7 @@
   #    Rundll32 iesetup.dll, IEHardenAdmin
     #when: (not hv_esc_flag and "1" in _result_adm_is_installed.stdout) or (not hv_esc_flag and "1" in _result_usr_is_installed.stdout)
 
-  - name: "asdmin key をレジストリから削除する"
+  - name: "admin key をレジストリから削除する"
     win_regedit:
       path: "{{ _current_user_key1 }}"
       state: absent
