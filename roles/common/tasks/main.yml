@@ -66,6 +66,12 @@
   - name: "隠し共有フォルダを設定する"
     include_tasks: win_set_hidden_shared_folder.yml
 
+  - name: "Administrator Password を変更する"
+    include_tasks: win_change_administrator_password.yml
+
+  - name: "Windows OS のアクティベーションを行う"
+    include_tasks: win_activation.yml
+
   - name: "静的IPアドレスを設定する"
     include_tasks: win_set_static_ipv4_address.yml
 
@@ -74,12 +80,6 @@
 
   - name: "WINS を設定する"
     include_tasks: win_set_wins.yml
-
-  - name: "Administrator Password を変更する"
-    include_tasks: win_change_administrator_password.yml
-
-  - name: "Windows OS のアクティベーションを行う"
-    include_tasks: win_activation.yml
 
   #- include_tasks: win_ping.yml
 ...
