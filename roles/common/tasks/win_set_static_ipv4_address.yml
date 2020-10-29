@@ -1,4 +1,11 @@
 ---
+  - win_shell: |
+      [System.Net.Dns]::GetHostAddresses((hostname)) | where {$_.AddressFamily -eq "InterNetwork"} | select -ExpandProperty IPAddressToString
+    register: _result_ipaddress
+
+  - debug:
+      var: _result_ipaddress
+  
   - name: "PowerShell で静的IPアドレス、DefaultGatewayを変更する"
     win_shell: |
       Get-NetAdapter | Remove-NetRoute -DestinationPrefix 0.0.0.0/0 -confirm:$false
@@ -7,10 +14,12 @@
       Get-NetIPAddress -interfaceAlias 'イーサネット' -AddressFamily IPv4 | New-NetIpAddress -IpAddress {{ _result_server_parameter.dict[inventory_hostname].csv_ipv4 }} -PrefixLength 24 -DefaultGateway {{ _result_server_parameter.dict[inventory_hostname].csv_gateway }}
     async: 100 # Using "fire-and-forget" asynchronous execution for this task, otherwise it will always fail and timeout
     poll: 0
+    when: _result_ipaddress.stdout_lines[0] != _result_server_parameter.dict[inventory_hostname].csv_ipv4
 
   - name: "Ansible 接続先ホストの IP アドレスを再設定する"
     set_fact:
       ansible_host: "{{ _result_server_parameter.dict[inventory_hostname].csv_ipv4 }}"
+    when: _result_ipaddress.stdout_lines[0] != _result_server_parameter.dict[inventory_hostname].csv_ipv4
 
   - name: "再接続が完了するまで待機する"
     local_action:
@@ -21,4 +30,5 @@
       state: started
       timeout: 30
     register: _result_wait
+    when: _result_ipaddress.stdout_lines[0] != _result_server_parameter.dict[inventory_hostname].csv_ipv4
 ...
