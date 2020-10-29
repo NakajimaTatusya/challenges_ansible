@@ -26,11 +26,11 @@
       protocol_name: https
       protocol_id: 2
   # 除外リスト
-#  gv_list_bypass:
-#    - <-loopback>
-#    - <local>
-#    - 10.*.*.*
-#    - "*.hogehoge.local"
+  gv_list_bypass:
+    - <-loopback>
+    - <local>
+    - 10.*.*.*
+    - "*.hogehoge.local"
   # WINS の IPV4 アドレス
 #  gv_wins_ipaddress:
 #    - interface_name: イーサネット

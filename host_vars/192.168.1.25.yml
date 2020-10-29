@@ -1,8 +1,0 @@
----
-  hv_dns_domain_name: testDomainName
-  hv_domain_admin_user: administrator
-  hv_domain_admin_password: Passw0rd
-  hv_domain_ou_path: "OU=Windows,OU=Servers,DC=ansible,DC=vagrant"
-  hv_new_local_adm_psswd: Passw0rd
-  hv_esc_flag: false
-...
