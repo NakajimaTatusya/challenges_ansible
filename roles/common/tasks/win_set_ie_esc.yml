@@ -15,28 +15,28 @@
     win_shell: |
       Set-ItemProperty -Path "{{ _admin_key }}" -Name "IsInstalled" -Value 0
     when: 
-      - not hv_esc_flag 
+      - not _esc_flag 
       - _installed_val in _result_adm_is_installed.stdout
       
   - name: "Administrator ユーザのための、インターネットエクスプローラーのセキュリティ強化の構成を行う"
     win_shell: |
       Set-ItemProperty -Path "{{ _admin_key }}" -Name "IsInstalled" -Value 1
     when: 
-      - hv_esc_flag 
+      - _esc_flag 
       - _installed_val not in _result_adm_is_installed.stdout
 
   - name: "%USER% ユーザのための、インターネットエクスプローラーのセキュリティ強化の構成を行う"
     win_shell: |
       Set-ItemProperty -Path "{{ _user_key }}" -Name "IsInstalled" -Value 0
     when: 
-      - not hv_esc_flag 
+      - not _esc_flag 
       - _installed_val in _result_usr_is_installed.stdout
         
   - name: "%USER% ユーザのための、インターネットエクスプローラーのセキュリティ強化の構成を行う"
     win_shell: |
       Set-ItemProperty -Path "{{ _user_key }}" -Name "IsInstalled" -Value 1
     when: 
-      - hv_esc_flag 
+      - _esc_flag 
       - _installed_val not in _result_usr_is_installed.stdout
 
   # 再起動するので不要とした
@@ -45,7 +45,7 @@
   #    Rundll32 iesetup.dll, IEHardenLMSettings
   #    Rundll32 iesetup.dll, IEHardenUser
   #    Rundll32 iesetup.dll, IEHardenAdmin
-    #when: (not hv_esc_flag and "1" in _result_adm_is_installed.stdout) or (not hv_esc_flag and "1" in _result_usr_is_installed.stdout)
+    #when: (not _esc_flag and "1" in _result_adm_is_installed.stdout) or (not _esc_flag and "1" in _result_usr_is_installed.stdout)
 
   - name: "admin key をレジストリから削除する"
     win_regedit:
@@ -53,7 +53,7 @@
       state: absent
       delete_key: yes
     when: 
-      - not hv_esc_flag 
+      - not _esc_flag 
       - _installed_val in _result_adm_is_installed.stdout
 
   - name: "admin key を作成する"
@@ -61,7 +61,7 @@
       path: "{{ _current_user_key1 }}"
       state: present
     when: 
-      - hv_esc_flag
+      - _esc_flag
       - _installed_val not in _result_adm_is_installed.stdout
 
   - name: "ユーザキーを削除する"
@@ -70,7 +70,7 @@
       state: absent
       delete_key: yes
     when: 
-      - not hv_esc_flag
+      - not _esc_flag
       - _installed_val in _result_usr_is_installed.stdout
 
   - name: "ユーザキーを作成する"
@@ -78,7 +78,7 @@
       path: "{{ _current_user_key2 }}"
       state: present
     when: 
-      - hv_esc_flag
+      - _esc_flag
       - _installed_val not in _result_usr_is_installed.stdout
 
   - name: "first home page をレジストリから削除する"
@@ -86,7 +86,7 @@
       path: "{{ _first_home_page }}"
       name: "{{ _first_home_page_value }}"
       state: absent
-    when: (not hv_esc_flag and "1" in _result_adm_is_installed.stdout) or (not hv_esc_flag and "1" in _result_usr_is_installed.stdout)
+    when: (not _esc_flag and "1" in _result_adm_is_installed.stdout) or (not _esc_flag and "1" in _result_usr_is_installed.stdout)
 
   - name: "first home page をレジストリへ作成する"
     win_regedit:
@@ -94,7 +94,7 @@
       name: "{{ _first_home_page_value }}"
       data: "{{ _first_home_page_data }}"
       state: present
-    when: (hv_esc_flag and "1" not in _result_adm_is_installed.stdout) or (hv_esc_flag and "1" not in _result_usr_is_installed.stdout)
+    when: (_esc_flag and "1" not in _result_adm_is_installed.stdout) or (_esc_flag and "1" not in _result_usr_is_installed.stdout)
 
   #- name: reboot Explorer
   #  win_shell: |
