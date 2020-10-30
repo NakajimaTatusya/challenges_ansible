@@ -1,4 +1,12 @@
 ---
+# 手動でのプロダクトキーコマンド
+# slmgr /dli      現在のライセンス認証の状態を確認する
+# slmgr /ato      ライセンス認証を実行する
+# slmgr /xpr      ライセンス認証が完了しているか確認する
+# slmgr /upk      プロダクトキーのアンインストール
+# slmgr /cpky     レジストからプロダクトキーを削除する
+# slmgr /rearm    Windowsのアクティベーションタイマーをリセットして、Windowsをライセンス認証前の状態にします。
+
   - name: License Status の確認
     win_shell: |
       $cpname = Get-Content env:computername
