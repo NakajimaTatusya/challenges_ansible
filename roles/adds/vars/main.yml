@@ -10,14 +10,14 @@
   _ad_opts:
     DomainName: ad01.local
     SafeModeAdministratorPassword: Ansible_201208    # SafeModeAdministratorPasswordで指定するパスワードは「ディレクトリ復元モード」時にのみ使用するために新しく作るパスワードであり、従来のAdministatorユーザのものではない
-    CreateDnsDelegation: $false
+    CreateDnsDelegation: $False
     DatabasePath: 'C:\Windows\NTDS'
-    DomainMode: 7
+    DomainMode: 'WinThreshold'
     DomainNetbiosName: ADANSIBLE
-    ForestMode: 7
-    InstallDns: $true
+    ForestMode: 'WinThreshold'
+    InstallDns: $True
     LogPath: 'C:\Windows\NTDS'
-    NoRebootOnCompletion: $false
+    NoRebootOnCompletion: $False
     SysvolPath: 'C:\Windows\SYSVOL'
-    Force: $true
+    Force: $True
 ...

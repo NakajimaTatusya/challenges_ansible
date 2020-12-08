@@ -1,16 +1,22 @@
-﻿Import-Module ADDSDeployment
+﻿$passwd = ConvertTo-SecureString -AsPlainText -Force -String "{{ _ad_opts.SafeModeAdministratorPassword }}"
 Install-ADDSForest 
 {%- for key, value in _ad_opts | dictsort %}
+{%- if key == 'DomainName' %}
+ -{{ key }} "{{ value }}"
+{%- endif %}
+{%- endfor %}
+{%- for key, value in _ad_opts | dictsort %}
 {%- if key == 'SafeModeAdministratorPassword' %}
- -{{ key }} (ConvertTo-SecureString -AsPlainText -Force -String "{{ value }}")
+ -{{ key }} $passwd
 {%- elif key == 'CreateDnsDelegation' %}
- -{{ key }} {{ value }}
+ -{{ key }}:{{ value }}
 {%- elif key == 'InstallDns' %}
- -{{ key }} {{ value }}
+ -{{ key }}:{{ value }}
 {%- elif key == 'NoRebootOnCompletion' %}
- -{{ key }} {{ value }}
+ -{{ key }}:{{ value }}
 {%- elif key == 'Force' %}
- -{{ key }} {{ value }}
+ -{{ key }}:{{ value }}
+{%- elif key == 'DomainName' %}
 {%- else %}
  -{{ key }} "{{ value }}"
 {%- endif %}
