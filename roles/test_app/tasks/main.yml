@@ -1,0 +1,24 @@
+---
+    - name: GUIアプリケーション起動テスト
+      win_shell: |
+        $pinfo = New-Object System.Diagnostics.ProcessStartInfo
+        $pinfo.FileName = "C:\tmp\testapp\TestKickFromWinRM.exe"
+        $pinfo.RedirectStandardError = $true
+        $pinfo.RedirectStandardOutput = $true
+        $pinfo.UseShellExecute = $false
+        $pinfo.Arguments = ""
+        $p = New-Object System.Diagnostics.Process
+        $p.StartInfo = $pinfo
+        $p.Start() | Out-Null
+        $p.WaitForExit()
+        $stdout = $p.StandardOutput.ReadToEnd()
+        $stderr = $p.StandardError.ReadToEnd()
+        Write-Host "stdout: " $stdout
+        Write-Host "stderr: " $stderr
+        Exit $p.ExitCode
+      register: _result_status
+
+    - name: 起動結果
+      debug:
+        var: _result_status
+...

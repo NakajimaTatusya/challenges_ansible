@@ -1,0 +1,16 @@
+---
+# Install-ADDSForest（新しいフォレストを追加する）
+# Install-ADDSDomain（新しいドメインを既存のフォレストに追加する）
+# Install-ADDSDomainController（既存のドメインにドメインコントローラーを追加する）
+
+  - name: j2 テンプレートからスクリプト作成
+    local_action: template src=Install-ADDSForest.ps1.j2 dest=./roles/adds/files/Install-ADDSForest.ps1
+  - name: Windows Server Manager AD-Domain-Services 機能追加
+    win_feature:
+      name: AD-Domain-Services
+      include_management_tools: yes
+  - name: Firewall 設定
+    raw: 'netsh advfirewall firewall add rule Profile=domain name="Allow WinRM HTTPS" d=in localport=5986 protocol=TCP action=allow'    #ネットワークプロファイルがドメインプロファイルに変更されるので、ファイアウォールにドメインプロファイル用のWinRMの穴を開けて、再起動後も引き続きAnsibleと通信できるようにしておく
+  - name: ドメインコントローラインストール
+    script: './roles/adds/files/Install-ADDSForest.ps1'
+...

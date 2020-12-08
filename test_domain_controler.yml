@@ -1,0 +1,7 @@
+---
+  - hosts: winsvr_product
+    gather_facts: false
+
+    roles:
+      - role: adds
+...

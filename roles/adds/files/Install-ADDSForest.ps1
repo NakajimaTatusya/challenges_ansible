@@ -1,0 +1,2 @@
+﻿Import-Module ADDSDeployment
+Install-ADDSForest -CreateDnsDelegation $false -DatabasePath "C:\Windows\NTDS" -DomainMode "7" -DomainName "ansible.local" -DomainNetbiosName "ANSIBLE" -Force $true -ForestMode "7" -InstallDns $true -LogPath "C:\Windows\NTDS" -NoRebootOnCompletion $false -SafeModeAdministratorPassword (ConvertTo-SecureString -AsPlainText -Force -String "Ansible_201208") -SysvolPath "C:\Windows\SYSVOL"
