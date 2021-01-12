@@ -37,9 +37,9 @@
       dest: "{{ local_logfile_path }}"
       flat: yes
 
-  - name: Windows Update が一つも行われなかったので終了する
-    meta: end_host
-    when: not _result_win_update.changed
+#  - name: Windows Update が一つも行われなかったので終了する
+#    meta: end_host
+#    when: not _result_win_update.changed
 
   - name: 再起動が必要な場合は行う
     win_reboot:
