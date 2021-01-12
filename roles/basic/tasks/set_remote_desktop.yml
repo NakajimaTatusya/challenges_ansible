@@ -1,0 +1,25 @@
+---
+  # リモートデスクトップの許可設定を行う
+  # リモートデスクトップ接続を許可しても、Windows Update を適応していないと、認証プロバイダ（CredSSP）のバージョンが一致せずに接続できないことがある
+  - name: "リモートデスクトップの許可設定を行う"
+    win_regedit:
+      path: "{{ item.path }}"
+      name: "{{ item.name }}"
+      data: "{{ item.data }}"
+      type: dword
+      state: present
+    with_items: "{{ _remote_desktop }}"
+
+  - name: "リモートデスクトップのファイアウォール許可設定"
+    win_firewall_rule:
+      name: "{{ item.name }}"
+      localport: "{{ item.localport }}"
+      remoteport: "{{ item.remoteport }}"
+      action: "{{ item.action }}"
+      direction: "{{ item.direction }}"
+      protocol: "{{ item.protocol }}"
+      profiles: "{{ item.profiles }}"
+      state: present
+      enabled: yes
+    with_items: "{{ _firewall_rules }}"
+...

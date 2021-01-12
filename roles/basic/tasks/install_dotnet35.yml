@@ -1,0 +1,61 @@
+---
+# ダウンロードしたファイルから、dotNetFramework3.5 をインストールする
+# ダウンロードしたファイルから、dotNetFramework3.5 language pack をインストールする
+  - name: "dotNetFramework3.5 インストール済みかどうか？"
+    win_shell: Get-WindowsFeature -Name "NET-Framework-Core" | ConvertTo-Json
+    changed_when: Flase
+    register: _result_dotNet35_info
+
+  - set_fact:
+      _dot_net_35: "{{ _result_dotNet35_info.stdout }}"
+
+  - name: "インストール済みであれば終了する"
+    meta: end_host
+    when: _dot_net_35.Installed == true
+
+  - name: "dotNetFramework3.5 インストールパッケージが存在しているか？"
+    win_shell: Test-Path {{ remote_temporary_path }}dotnetfx35.exe
+    changed_when: False
+    register: _result_exsits
+
+  - name: "dotNetFramework3.5 のインストールファイルをリモートへコピー"
+    win_copy:
+      src: dotnetfx35.exe
+      dest: "{{ remote_temporary_path }}"
+    when: 
+      - _dot_net_35.Installed == false 
+      - _result_exsits.stdout_lines[0] == "False"
+
+  - name: "dotNetFramework3.5 language pack インストールパッケージが存在しているか？"
+    win_shell: Test-Path {{ remote_temporary_path }}dotnetfx35langpack_x64ja.exe
+    changed_when: False
+    register: _result_exsits
+
+  - name: "dotNetFramework3.5 言語パッケージをリモートへコピー"
+    win_copy:
+      src: dotnetfx35langpack_x64ja.exe
+      dest: "{{ remote_temporary_path }}"
+    when: 
+      - _dot_net_35.Installed == false
+      - _result_exsits.stdout_lines[0] == "False"
+
+  - name: "dotNetFramework3.5 をインストール"
+    win_shell: |
+      Install-WindowsFeature Net-Framework-Core -source {{ remote_temporary_path }}dotnetfx35.exe
+    register: _result_install_dotNet35
+    when: _dot_net_35.Installed == false
+
+  - name: "dotNetFramework3.5 language pack をインストール"
+    win_command: |
+      {{ remote_temporary_path }}dotnetfx35langpack_x64ja.exe /PASSIVE /QUIET
+    register: _result_install_language
+    when: _dot_net_35.Installed == false
+
+  - name: "インストール結果の確認"
+    win_shell: |
+      Get-WindowsFeature -Name "NET-Framework-Core" | ConvertTo-Json
+    register: _result_dotNet35_info
+
+  - debug:
+      var: _result_dotNet35_info
+...

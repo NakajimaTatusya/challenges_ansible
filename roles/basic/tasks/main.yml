@@ -1,0 +1,25 @@
+---
+  # OS 基本設定
+  #パスワードの最小の長さ0以上に変更する
+  - include_tasks: set_password_policy_length.yml
+  #パスワードの有効期限を無期限にする
+  - include_tasks: set_password_policy_expiration.yml
+  #パスワードの複雑さ要件を無効にする
+  - include_tasks: set_password_policy_complexity.yml
+  #光学ドライブレターをQに設定する
+  - include_tasks: set_optical_drive_letter.yml
+  #共有隠しフォルダを設定する
+  - include_tasks: set_hidden_shared_folder.yml
+  #リモートデスクトップを有効にする
+  - include_tasks: set_remote_desktop.yml
+  #windows firewall を無効にする
+  - include_tasks: set_windows_firewall.yml
+  #フィードバックと診断通知を無効にする
+  - include_tasks: set_not_show_feedback.yml
+  #IEセキュリティ強化の構成 Administrators：オフ、Users：オフ
+  - include_tasks: set_ie_esc.yml
+  #プロファイル調整（ローカルAdministorアカウント）デスクトップアイコン表示
+  - include_tasks: set_visible_desktop_icons.yml
+  #dotNetFrameWork3.5のインストール
+  - include_tasks: install_dotnet35.yml
+...

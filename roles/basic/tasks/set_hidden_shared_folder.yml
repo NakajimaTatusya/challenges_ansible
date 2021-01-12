@@ -1,0 +1,15 @@
+---
+  - name: "共有隠しフォルダ向けフォルダの作成"
+    win_file:
+      path: "{{ _hidden_path }}"
+      state: directory
+
+  - name: "共有隠しフォルダを設定"
+    win_share:
+      name: "{{ _hidden_name }}"
+      description: created hidden shared folder by ansible
+      path: "{{ _hidden_path }}"
+      list: no
+      full: Administrator,everyone
+      state: present
+...

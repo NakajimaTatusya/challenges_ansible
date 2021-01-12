@@ -1,0 +1,17 @@
+---
+  - name: "光学ディスクの存在確認とドライブレターの取得"
+    win_shell: |
+      (Get-Volume | ?{$_.DriveType -match 'CD-ROM'}).driveletter
+    change_when: False
+    register: _result_driveletter
+
+  - name: 光学ドライブのドライブレターを "{{ _drive_letter }}" に設定する
+    win_shell: |
+      $driveLetter = "DriveLetter = '" + (Get-Volume | ?{$_.DriveType -match 'CD-ROM'}).driveletter + ":'"
+      $drive = Get-WmiObject -Class win32_volume -Filter $driveLetter
+      Set-WmiInstance -input $drive -Arguments @{DriveLetter='{{ _drive_letter }}:'}
+    register: _result_ps
+    when: 
+      - _result_driveletter.stdout_lines|length > 0
+      - _result_driveletter.stdout_lines[0] != _drive_letter
+...
