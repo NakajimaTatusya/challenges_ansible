@@ -1,0 +1,7 @@
+---
+  - hosts: yamaha_router
+    gather_facts: false
+
+    roles:
+      - role: yamaha
+...
