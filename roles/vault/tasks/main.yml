@@ -1,0 +1,5 @@
+---
+  - name: show product key
+    debug:
+      msg: "pkey = {{ _product_key }}"
+...
