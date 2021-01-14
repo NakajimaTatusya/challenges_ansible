@@ -2,7 +2,7 @@
   - name: "光学ディスクの存在確認とドライブレターの取得"
     win_shell: |
       (Get-Volume | ?{$_.DriveType -match 'CD-ROM'}).driveletter
-    change_when: False
+    changed_when: False
     register: _result_driveletter
 
   - name: 光学ドライブのドライブレターを "{{ _drive_letter }}" に設定する
