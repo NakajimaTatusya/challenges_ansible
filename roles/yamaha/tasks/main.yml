@@ -1,0 +1,19 @@
+---
+  - name: ヤマハのルーターから情報をとる
+    telnet:
+      password: "{{ yamaha_password }}"
+      login_prompt: "Password: "
+      prompts:
+        - "[>|#]|Password:"
+      command:
+        - console lines infinity
+        - show config
+        #- show environment
+        #- show log
+    changed_when: False
+    register: _result
+
+  - name: show config
+    debug:
+      var: _result.output
+...
