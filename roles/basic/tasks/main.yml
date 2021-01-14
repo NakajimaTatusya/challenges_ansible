@@ -21,5 +21,5 @@
   #プロファイル調整（ローカルAdministorアカウント）デスクトップアイコン表示
   - include_tasks: set_visible_desktop_icons.yml
   #dotNetFrameWork3.5のインストール
-  - include_tasks: install_dotnet35.yml
+  #- include_tasks: install_dotnet35.yml
 ...
