@@ -4,3 +4,4 @@ config.ps1
 ansible.cfg
 server_parameter_product.csv
 bk
+server_individual_parameter.csv
