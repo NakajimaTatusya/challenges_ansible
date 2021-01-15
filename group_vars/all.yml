@@ -1,11 +1,6 @@
 ---
     # Global variables
 
-    #ansible_user: Administrator
-    #ansible_password: Passw0rd
-    #ansible_connection: winrm
-    #ansible_port: 5985
-    #ansible_winrm_server_cert_validation: ignore
     remote_temporary_path: c:\ansible_temp\
-    local_logfile_path: ~/challenges_ansible/logs/
+    local_logfile_path: ~/challenges_ansible/logs/WIndowsUpdateLogs
 ...
