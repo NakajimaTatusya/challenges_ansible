@@ -1,0 +1,16 @@
+---
+  #ホスト名を設定
+  - include_tasks: set_hostname.yml
+  #IPv6無効
+  - include_tasks: set_disable_ipv6.yml
+  #OSライセンス認証実施
+  - include_tasks: set_activation.yml
+  #時刻同期設定
+  - include_tasks: set_ntp.yml
+  #IPv4静的IPアドレス変更とデフォルトゲートウェイ変更
+  - include_tasks: set_static_ipv4_address.yml
+  #DNS設定
+  - include_tasks: set_dns.yml
+  #パスワード変更
+  - include_tasks: change_administrator_password.yml
+...

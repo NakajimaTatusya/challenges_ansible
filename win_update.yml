@@ -1,6 +1,6 @@
 ---
   # windows update role playbook
-  - hosts: winsvr_product
+  - hosts: winsvr_dev
     gather_facts: true
 
     pre_tasks:
@@ -16,6 +16,9 @@
 
     roles:
       - role: win_update
+        vars:
+      - role: dotNet35
+        vars:
 
     post_tasks:
       - name: "リモートの作業ディレクトリ削除"

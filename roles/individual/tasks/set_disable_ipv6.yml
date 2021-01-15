@@ -1,0 +1,6 @@
+---
+  - name: "IPv6 を無効にする"
+    win_shell: Disable-NetAdapterBinding -Name "イーサネット" -ComponentID ms_tcpip6
+    async: 100
+    poll: 0
+...

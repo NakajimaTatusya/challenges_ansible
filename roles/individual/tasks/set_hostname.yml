@@ -1,0 +1,15 @@
+---
+  - name: "ホスト名を設定する"
+    win_hostname: 
+      name: "{{ _result_server_parameter.dict[inventory_hostname].csv_hostname }}"
+    register: _result_hostname
+
+  - name: "変更前のホスト名を出力する"
+    debug:
+      msg: "{{ _result_hostname.old_name }}"
+
+  - name: "OS を再起動する"
+    win_reboot:
+      reboot_timeout: 3600
+    when: _result_hostname.reboot_required
+...

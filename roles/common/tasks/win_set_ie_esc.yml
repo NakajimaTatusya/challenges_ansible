@@ -4,11 +4,13 @@
   - name: Administratorのインターネットエクスプローラーのセキュリティ強化の構成を取得
     win_shell: |
       Get-ItemProperty -Path "{{ _admin_key }}" -Name "IsInstalled" | Select-Object -Property IsInstalled | ConvertTo-Json
+    changed_when: False
     register: _result_adm_is_installed
 
   - name: ユーザのインターネットエクスプローラーのセキュリティ強化の構成を取得
     win_shell: |
       Get-ItemProperty -Path "{{ _user_key }}" -Name "IsInstalled" | Select-Object -Property IsInstalled | ConvertTo-Json
+    changed_when: False
     register: _result_usr_is_installed
 
   - name: "Administrator ユーザのための、インターネットエクスプローラーのセキュリティ強化の構成を行う"

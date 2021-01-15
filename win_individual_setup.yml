@@ -1,0 +1,57 @@
+---
+  # Windows Server 2019 個別設定 ver.202101.14.1201
+  - hosts: winsvr_dev
+    gather_facts: true
+
+    pre_tasks:
+      - name: "設定前の状態出力(facts)"
+        debug: 
+          var: ansible_facts
+      - name: "設定前の状態出力(systeminfo command)"
+        win_command: systeminfo
+        register: _result_info
+      - name: display system information
+        debug: 
+          var: _result_info
+
+      - name: "{{ remote_temporary_path }} ディレクト存在確認"
+        win_shell: Test-Path "{{ remote_temporary_path }}"
+        register: _result_test_path
+
+      - name: "{{ remote_temporary_path }} ディレクトが無ければ作成"
+        win_file:
+          path: "{{ remote_temporary_path }}"
+          state: directory
+        when: _result_test_path.stdout_lines[0] == "False"
+
+      - name: "サーバーパラメータ CSV File から読み込み"
+        read_csv:
+          path: ./csv_files/server_individual_parameter.csv
+          key: target_hosts
+        register: _result_server_parameter
+        delegate_to: localhost
+      - name: "DNS 設定を CSV File から読み込み"
+        read_csv:
+          path: ./csv_files/dns.csv
+        register: _result_dns
+        delegate_to: localhost
+
+    roles:
+      - role: individual
+
+    post_tasks:
+      - name: "設定完了後の状態出力(facts)"
+        debug: 
+          var: ansible_facts
+      - name: "設定完了後の状態出力(systeminfo command)"
+        win_command: systeminfo
+        register: _result_info
+      - name: "システムインフォメーションコマンド実行結果出力"
+        debug: 
+          var: _result_info
+
+      - name: "リモートの作業ディレクトリ削除"
+        win_file:
+          path: "{{ remote_temporary_path }}"
+          state: absent
+...

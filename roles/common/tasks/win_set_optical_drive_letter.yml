@@ -2,6 +2,7 @@
   - name: "光学ディスクのドライブレターを変更する"
     win_shell: |
       (Get-Volume | ?{$_.DriveType -match 'CD-ROM'}).driveletter
+    change_when: False
     register: _result_driveletter
 
   - name: 光学ドライブのドライブレターを "{{ _result_server_parameter.dict[inventory_hostname].csv_drive_letter }}" に設定する
