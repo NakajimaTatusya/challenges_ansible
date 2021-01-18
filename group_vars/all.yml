@@ -2,5 +2,5 @@
     # Global variables
 
     remote_temporary_path: c:\ansible_temp\
-    local_logfile_path: ~/challenges_ansible/logs/WIndowsUpdateLogs
+    local_logfile_path: ~/challenges_ansible/logs/win_update_logs/
 ...
