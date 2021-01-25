@@ -6,6 +6,8 @@
     local_action: command date +%Y%m%d%H%M%S
     register: _result_local_action
 
+  # Windows Updateは実行結果がエラーコードを返しても、正常なKBはインストールされてしまうので、エラーの起こったKBは無視し
+  # 個別にエラーコードを見て、対応することとする。
   - name: Windows Update を実行する
     win_updates:
       category_names:
@@ -24,6 +26,7 @@
       log_path: "{{ remote_temporary_path }}ansible_win_update_{{ inventory_hostname }}_{{ _result_local_action.stdout }}.log"
       server_selection: windows_update
       state: installed
+    ignore_errors: True
     register: _result_win_update
 
   - name: Windows Update の結果
