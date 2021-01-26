@@ -12,9 +12,9 @@
   - debug:
       msg: "{{ _dot_net_35.Installed }}"
 
-  - name: インストール済みであれば終了する
-    meta: end_host
-    when: _dot_net_35.Installed == true
+#  - name: インストール済みであれば終了する
+#    meta: end_host
+#    when: _dot_net_35.Installed == true
 
   - name: "dotNetFramework3.5 インストールパッケージが存在しているか？"
     win_shell: Test-Path {{ remote_temporary_path }}dotnetfx35.exe
