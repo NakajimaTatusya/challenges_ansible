@@ -1,0 +1,19 @@
+---
+  # windows のステータスがUpのネットワークアダプター名を取得する
+  # pip3 install jmespath が必須
+  - hosts: winsvr_dev
+    gather_facts: false
+
+    tasks:
+      - name: "Get Network Adapter Names"
+        win_shell: |
+          Get-NetAdapter | Select-Object Name, Status | Where-Object Status -eq 'Up' | ConvertTo-Json
+        changed_when: False
+        register: _result_net_adapters
+      - name: "create list"
+        set_fact:
+          _adapterlist: "{{ _result_net_adapters.stdout|from_json|json_query('Name') }}"
+      - debug:
+          msg: "{{ item }}"
+        with_items: "{{ _adapterlist }}"
+...

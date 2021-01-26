@@ -1,8 +1,8 @@
 ---
   - win_dns_client:
-      adapter_names: "イーサネット"
+      adapter_names: "{{ item }}"
       ipv4_addresses: []
-    changed_when: False
+    with_items: _adapterlist
 
   - set_fact:
       _dnslist: "{{ _result_dns.list | map(attribute='csv_dns') | list }}"
@@ -10,6 +10,7 @@
 
   - name: "DNSを設定する"
     win_dns_client:
-      adapter_names: "イーサネット"
+      adapter_names: "{{ item }}"
       ipv4_addresses: "{{ _dnslist }}"
+    with_items: _adapterlist
 ...
