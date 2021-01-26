@@ -10,19 +10,19 @@
   # 個別にエラーコードを見て、対応することとする。
   - name: Windows Update を実行する
     win_updates:
-      category_names:
-        - Application
-        - Connectors
-        - CriticalUpdates
-        - DefinitionUpdates
-        - DeveloperKits
-        - FeaturePacks
-        - Guidance
-        - SecurityUpdates
-        - ServicePacks
-        - Tools
-        - UpdateRollups
-        - Updates
+      # category_names:
+      #   - Application
+      #   - Connectors
+      #   - CriticalUpdates
+      #   - DefinitionUpdates
+      #   - DeveloperKits
+      #   - FeaturePacks
+      #   - Guidance
+      #   - SecurityUpdates
+      #   - ServicePacks
+      #   - Tools
+      #   - UpdateRollups
+      #   - Updates
       log_path: "{{ remote_temporary_path }}ansible_win_update_{{ inventory_hostname }}_{{ _result_local_action.stdout }}.log"
       server_selection: windows_update
       state: installed
