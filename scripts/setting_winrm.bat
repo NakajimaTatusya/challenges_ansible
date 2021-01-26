@@ -11,7 +11,7 @@ exit /b %errorlevel%
 powershell -NoProfile -ExecutionPolicy unrestricted -Command "Start-Process %~f0 -Verb runas"
 exit
 ') | sv -Name TempVar
-# !!!!! Windows Server 2016 以降に適応すること !!!!!
+# !!!!! Windows Server 2016 以降に適用すること !!!!!
 # ここから下は PowerShellスクリプト
 winrm set winrm/config/service/auth '@{Basic="true"}'
 winrm set winrm/config/service '@{AllowUnencrypted="true"}'
