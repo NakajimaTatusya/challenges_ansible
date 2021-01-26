@@ -9,13 +9,16 @@
 
   - name: "NTP 設定を行う"
     win_command: w32tm /config /manualpeerlist:"{{ _result_server_parameter.dict[inventory_hostname].csv_peers }}" /reliable:yes /update
-#    args:
-#      output_encoding_override: shift_jis
+    args:
+      output_encoding_override: shift_jis
     changed_when: false
     when: _result_server_parameter.dict[inventory_hostname].csv_peers != ""
 
   - name: "NTP 設定結果を出力する"
     win_command: w32tm /query /source
+    args:
+      output_encoding_override: shift_jis
+    changed_when: false
     register: _result
 
   - debug:
