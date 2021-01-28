@@ -35,18 +35,18 @@
           path: ./csv_files/dns.csv
         register: _result_dns
         delegate_to: localhost
-        #ConvertTo-Json @(Get-NetAdapter | Select-Object Name, Status | Where-Object Status -eq 'Up')
+        #Get-NetAdapter | Select-Object Name, Status | Where-Object Status -eq 'Up' | ConvertTo-Json
       - name: "StatusがUpのネットワークアダプター名を取得する"
         win_shell: |
-          Get-NetAdapter | Select-Object Name, Status | Where-Object Status -eq 'Up' | ConvertTo-Json
+          ConvertTo-Json @(Get-NetAdapter | Select-Object Name, Status | Where-Object Status -eq 'Up')
         changed_when: False
         register: _result_net_adapters
       - set_fact:
-          _adapterlist: "{{ _result_net_adapters.stdout|from_json|json_query('Name') }}"
+          _adapterlist: "{{ _result_net_adapters.stdout|from_json|json_query('[].Name') }}"
         changed_when: False
-      - debug:
-          msg: "{{ item }}"
-        with_items: "{{ _adapterlist }}"
+      # - debug:
+      #     msg: "{{ item }}"
+      #   with_items: "{{ _adapterlist }}"
 
     roles:
       - role: individual

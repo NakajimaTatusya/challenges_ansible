@@ -4,16 +4,38 @@
   - hosts: winsvr_dev
     gather_facts: false
 
+    vars:
+      test:
+        stdout: |
+          [
+              {
+                  "Name":  "Wi-Fi",
+                  "Status":  "Up"
+              },
+              {
+                  "Name":  "vEthernet (Default Switch)",
+                  "Status":  "Up"
+              },
+              {
+                  "Name":  "VirtualBox Host-Only Network",
+                  "Status":  "Up"
+              }
+          ]
+
     tasks:
       - name: "Get Network Adapter Names"
         win_shell: |
-          Get-NetAdapter | Select-Object Name, Status | Where-Object Status -eq 'Up' | ConvertTo-Json
+          ConvertTo-Json @(Get-NetAdapter | Select-Object Name, Status | Where-Object Status -eq 'Up')
         changed_when: False
         register: _result_net_adapters
       - name: "create list"
         set_fact:
-          _adapterlist: "{{ _result_net_adapters.stdout|from_json|json_query('Name') }}"
+          _adapterlist: "{{ _result_net_adapters.stdout|from_json|json_query('[].Name') }}"
+          _testlist: "{{ test.stdout|from_json|json_query('[].Name') }}"
       - debug:
           msg: "{{ item }}"
         with_items: "{{ _adapterlist }}"
+      - debug:
+          msg: "{{ item }}"
+        with_items: "{{ _testlist }}"
 ...
