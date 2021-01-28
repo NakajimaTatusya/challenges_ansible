@@ -1,0 +1,45 @@
+---
+  all:
+    hosts:
+    vars:
+      ansible_user: Administrator
+      ansible_password: !vault |
+          $ANSIBLE_VAULT;1.2;AES256;dev
+          34616338333137636663373038383439633236666365383963666330646561396138316166333565
+          6538663936376337316266646235316634376665356662610a366533316339356364633038373434
+          63643431633633626237613233623962396166326531376264666437363833343465383562633461
+          3163376364343362330a323065343737633132363932656538316535346136613535323436613437
+          6262
+      # ansible_password: P@ssw0rd
+      ansible_connection: winrm
+      ansible_port: 5985
+      ansible_winrm_server_cert_validation: ignore
+    children:
+      winsvr_dev:
+        hosts:
+          # 192.168.1.22:
+          192.168.1.203:
+      winsvr_product:
+        hosts:
+          192.168.1.202:
+          192.168.1.203:
+      yamaha_router:
+        hosts:
+          192.168.1.1:
+        vars:
+          #platform: yamaha #SSH
+          platform: yamaha_telnet # Telnet
+          yamaha_user: yamaha
+          yamaha_password: !vault |
+            $ANSIBLE_VAULT;1.2;AES256;dev
+            61313161376231363362333063643061373361343136626566313436363935353662663132376465
+            3738326538623835636137363261616231666436616232380a623061613563613037663637326361
+            62623161663761656566366263633037663765663733636536636332333361313263316633646238
+            3730346166343930630a346561346666386633383666376135666639343466356361373334353133
+            3034
+          #ansible_become_pass: yamaha
+          #ansible_python_interpreter: /home/centos/venv_an2.8.4/bin/python3.6
+      winsvr_host:
+        hosts:
+          192.168.1.200:
+...
