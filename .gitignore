@@ -5,3 +5,5 @@ ansible.cfg
 server_parameter_product.csv
 bk
 server_individual_parameter.csv
+csv_files/server_individual_parameter copy.csv
+csv_files/dns copy.csv
